@@ -20,6 +20,9 @@ viewdocs: clean staticmin
 htmldocs: staticmin
 	./build-site.py rst
 
+epubdocs: staticmin
+	./build-site.py epub
+
 clean:
 	-rm -rf htmlout
 	-rm -f .buildinfo

@@ -36,15 +36,13 @@ class SphinxBuilder(object):
     Creates HTML documentation using Sphinx.
     """
 
-    def __init__(self):
+    def __init__(self, buildername='html'):
         """
         Run the DocCommand.
         """
         print "Creating html documentation ..."
 
         try:
-            buildername = 'html'
-
             outdir = os.path.abspath(os.path.join(os.getcwd(), "htmlout"))
             # Create the output directory if it doesn't exist
             if not os.access(outdir, os.F_OK):
@@ -78,8 +76,8 @@ class SphinxBuilder(object):
         self.app.builder.build_all()
 
 
-def build_rst_docs():
-    docgen = SphinxBuilder()
+def build_rst_docs(buildername):
+    docgen = SphinxBuilder(buildername)
 
 if __name__ == '__main__':
     if '-h' in sys.argv or '--help' in sys.argv:
@@ -88,7 +86,8 @@ if __name__ == '__main__':
         print "    Run 'make viewdocs' to build and then preview in a web browser."
         sys.exit(0)
 
-    build_rst_docs()
+    buildername = 'epub' if 'epub' in sys.argv else 'html'
+    build_rst_docs(buildername)
 
     if "view" in sys.argv:
         import webbrowser
