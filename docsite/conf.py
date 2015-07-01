@@ -208,3 +208,8 @@ latex_documents = [
 #latex_use_modindex = True
 
 autoclass_content = 'both'
+
+# Options for EPub output
+# -----------------------
+# http://sphinx-doc.org/config.html#options-for-epub-output
+epub_author = AUTHOR

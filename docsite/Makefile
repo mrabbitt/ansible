@@ -4,11 +4,14 @@ FORMATTER=../hacking/module_formatter.py
 
 all: clean docs
 
-docs: clean modules staticmin
+docs: modules staticmin
 	./build-site.py
 	-(cp *.ico htmlout/)
 	-(cp *.jpg htmlout/)
 	-(cp *.png htmlout/)
+
+epubdocs: docs staticmin
+	./build-site.py epub
 
 variables:
 	(mkdir -p htmlout/)
@@ -19,9 +22,6 @@ viewdocs: clean staticmin
 
 htmldocs: staticmin
 	./build-site.py rst
-
-epubdocs: staticmin
-	./build-site.py epub
 
 clean:
 	-rm -rf htmlout
